@@ -1,0 +1,11 @@
+class Solution {
+    public int maximizeSum(int[] nums, int k) {
+        int n = nums[nums.length - 1];
+        int sum = n;
+        for(int i = 1; i < k; i++) {
+            n++;
+            sum += n;
+        } 
+        return sum;
+    }
+}
