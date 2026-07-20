@@ -1,0 +1,41 @@
+class Solution {
+    public int isWinner(int[] player1, int[] player2) {
+        int p1 = score(player1);
+        int p2 = score(player2);
+        if(p1 > p2) {
+            return 1;
+        }
+        if (p2 > p1) {
+            return 2;
+        }
+        return 0;
+    }
+
+    public int score(int[] player) {
+        int n = player.length;
+        boolean[] two = new boolean[n];
+        int i = 0;
+        while(i < n) {
+            if(player[i] == 10) {
+                if(i + 1 < n) {
+                    two[i + 1] = true;
+                }
+                if(i + 2 < n) {
+                    two[i + 2] = true;
+                }
+            }
+            i++;
+        }
+
+        int sum = 0;
+        for(int j = 0; j < n; j++) {
+            if(!two[j]) {
+                sum += player[j];
+            }
+            else {
+                sum += player[j] * 2;
+            }
+        }
+        return sum;
+    }
+}
