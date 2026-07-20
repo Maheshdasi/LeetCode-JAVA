@@ -1,0 +1,45 @@
+class Solution {
+    public List<List<Integer>> shiftGrid(int[][] grid, int k) {
+        int row = grid.length;
+        int col = grid[0].length;
+        k = k % (row * col);
+
+        //adding all the elements to an array
+        int[] result = new int[row * col];
+        int idx = 0; 
+        for(int i = 0; i < row; i++) {
+            for(int j = 0; j < col; j++) {
+                result[idx++] = grid[i][j];
+            }
+        }
+        
+        //calling shift function
+        result = shift(result, k, row, col);
+
+        //adding elements to list
+        int index = 0;
+        List<List<Integer>> list = new ArrayList<>();
+        for(int i = 0; i < row; i++) {
+            List<Integer> temp = new ArrayList<>();
+            for(int j = 0; j < col; j++) {
+                temp.add(result[index++]);
+            }
+            list.add(temp);
+        }
+        return list;
+    }
+
+    //shift funnction to perform k elements shift in the 2D array
+    public int[] shift(int[] result, int k, int row, int col) {
+        int[] res = new int[row * col];
+        int n = result.length;
+        int idx = 0;
+        for(int i = n - k; i < n; i++) {
+            res[idx++] = result[i];
+        }
+        for(int i = 0; i < n - k; i++) {
+            res[idx++] = result[i];
+        }
+        return res;
+    }
+}
